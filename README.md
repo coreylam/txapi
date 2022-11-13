@@ -2,17 +2,28 @@
 
 轻量级的腾讯云SDK, 同时支持 yunapi2 与 yunapi3, 支持 公有云 / 专有云(租户端&运营端). 
 
+## Install 
+
+```
+pip install txapi
+```
+
+Project: https://pypi.org/project/txapi/1.0.0/
+
 ## DEMO
 
 配置文件 config.py
+
 ```python
 api_domain = "tencentcloudapi.com" # 环境API域名, 公有云为: tencentcloudapi.com
-sid = "" # 个人 secret_id
-skey = "" # 个人 secret_key
+sid = "AKIDxxxx" # 个人 secret_id
+skey = "xxxx" # 个人 secret_key
 region = "ap-chongqing"
 is_debug = True
 is_ssl = True
 ```
+
+密钥登录腾讯云控制台获取: https://console.cloud.tencent.com/cam/capi
 
 示例文件 demo.py
 ```python
