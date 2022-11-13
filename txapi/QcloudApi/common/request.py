@@ -11,7 +11,7 @@ except ImportError:
     from httplib import HTTPConnection, BadStatusLine, HTTPSConnection
     from urlparse import urlparse
 
-from .api_exception import ApiClientNetworkException, ApiClientParamException
+from txapi.QcloudApi.common.api_exception import ApiClientNetworkException, ApiClientParamException
 
 
 class MyHTTPSConnection(HTTPSConnection):

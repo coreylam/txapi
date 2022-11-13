@@ -25,12 +25,12 @@ try:
 except ImportError:
     from urllib import urlencode
 
-import QcloudApi
-from QcloudApi.common.api_exception import ApiClientParamException
-from QcloudApi.common.api_exception import ApiServerNetworkException
-from QcloudApi.common.request import ApiRequest
-from QcloudApi.common.request import RequestInternal
-from QcloudApi.common.sign import Sign
+from txapi import QcloudApi
+from txapi.QcloudApi.common.api_exception import ApiClientParamException
+from txapi.QcloudApi.common.api_exception import ApiServerNetworkException
+from txapi.QcloudApi.common.request import ApiRequest
+from txapi.QcloudApi.common.request import RequestInternal
+from txapi.QcloudApi.common.sign import Sign
 
 warnings.filterwarnings("ignore")
 

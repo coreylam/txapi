@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from api import API
+from txapi import API
 import config
 
 client = API.v3(

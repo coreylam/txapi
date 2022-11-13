@@ -2,12 +2,12 @@
 import json
 import ssl
 
-from tencentcloud.common import credential
-from tencentcloud.common.abstract_client import AbstractClient
-from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
-from tencentcloud.common.profile.client_profile import ClientProfile
-from tencentcloud.common.profile.http_profile import HttpProfile
-from version import VERSION_MAP
+from txapi.tencentcloud.common import credential
+from txapi.tencentcloud.common.abstract_client import AbstractClient
+from txapi.tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
+from txapi.tencentcloud.common.profile.client_profile import ClientProfile
+from txapi.tencentcloud.common.profile.http_profile import HttpProfile
+from txapi.version import VERSION_MAP
 
 ssl._create_default_https_context = ssl._create_unverified_context
 

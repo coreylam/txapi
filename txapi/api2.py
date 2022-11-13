@@ -1,8 +1,8 @@
 # -*- coding: utf8 -*-
 import json
 
-from QcloudApi.modules import base
-from QcloudApi.qcloudapi import QcloudApi
+from txapi.QcloudApi.modules import base
+from txapi.QcloudApi.qcloudapi import QcloudApi
 
 
 class Api2Client(object):

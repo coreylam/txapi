@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from QcloudApi.modules import base
+from txapi.QcloudApi.modules import base
 
 
 class QcloudApi(object):
