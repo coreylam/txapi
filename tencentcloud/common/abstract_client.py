@@ -29,12 +29,12 @@ try:
 except ImportError:
     from urllib import urlencode
 
-from apiclient import tencentcloud
-from apiclient.tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
-from apiclient.tencentcloud.common.http.request import ApiRequest
-from apiclient.tencentcloud.common.http.request import RequestInternal
-from apiclient.tencentcloud.common.profile.client_profile import ClientProfile
-from apiclient.tencentcloud.common.sign import Sign
+import tencentcloud
+from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
+from tencentcloud.common.http.request import ApiRequest
+from tencentcloud.common.http.request import RequestInternal
+from tencentcloud.common.profile.client_profile import ClientProfile
+from tencentcloud.common.sign import Sign
 
 warnings.filterwarnings("ignore")
 

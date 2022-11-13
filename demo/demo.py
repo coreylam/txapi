@@ -1,32 +1,19 @@
 # -*- coding:utf-8 -*-
+from api import API
+import config
 
-# 调用云API2
-from apiclient.api2 import Api2Client
+client = API.v3(
+    api_domain=config.api_domain,
+    region=config.region,
+    secret_id=config.sid,
+    secret_key=config.skey,
+    debug=config.is_debug,
+    ssl=config.is_ssl)
 
-api_domain = "api2.xxx.cn"
-sid = ""
-skey = ""
-client = Api2Client()
-client.set_ssl(False)
-client.debug = True
-client.set_domain(api_domain)
-client.set_region("shanghai")
-client.set_secret(sid, skey)
-client.switch_module("cam")
-client.request("GetAllSubUser", {})
+cvm = client.get_client("cvm", "2017-03-12")
 
-# 调用云API3
-from apiclient.api3 import Api3Client
-
-api_domain = "api3.yf-m17.tcecqpoc.fsphere.cn"
-sid = ""
-skey = ""
-client = Api3Client()
-client.debug = True
-client.set_domain(api_domain)
-client.set_ssl(False)
-client.set_region("shanghai")
-client.set_secret(sid, skey)
-client.set_version("cvm", "2017-03-12")
-client.switch_module("cvm")
-client.request("DescribeInstances", {"Limit": 1})
+params = {
+    "Limit": 20,
+    "Offset": 1
+}
+print(cvm.request("DescribeInstances", params))

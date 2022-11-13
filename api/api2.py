@@ -1,8 +1,8 @@
 # -*- coding: utf8 -*-
 import json
 
-from apiclient.QcloudApi.modules import base
-from apiclient.QcloudApi.qcloudapi import QcloudApi
+from QcloudApi.modules import base
+from QcloudApi.qcloudapi import QcloudApi
 
 
 class Api2Client(object):
@@ -12,7 +12,7 @@ class Api2Client(object):
             api_domain="",
             endpoint="",
             version="",
-            region="",
+            region="ap-guangzhou",
             secret_id="",
             secret_key="",
             token=None,
@@ -76,9 +76,7 @@ class Api2Client(object):
         self.endpoint = "{}.{}".format(module, self.api_domain)
 
     def get_client(self, module=None, version=None):
-        if version is None:
-            version = self.version
-        else:
+        if version is not None:
             self.set_version(module, version)
 
         obj = Api2Client(

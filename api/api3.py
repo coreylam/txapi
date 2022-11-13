@@ -2,12 +2,12 @@
 import json
 import ssl
 
-from apiclient.tencentcloud.common import credential
-from apiclient.tencentcloud.common.abstract_client import AbstractClient
-from apiclient.tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
-from apiclient.tencentcloud.common.profile.client_profile import ClientProfile
-from apiclient.tencentcloud.common.profile.http_profile import HttpProfile
-from apiclient.version import VERSION_MAP
+from tencentcloud.common import credential
+from tencentcloud.common.abstract_client import AbstractClient
+from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
+from tencentcloud.common.profile.client_profile import ClientProfile
+from tencentcloud.common.profile.http_profile import HttpProfile
+from version import VERSION_MAP
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -16,10 +16,10 @@ class Api3Client(AbstractClient):
 
     def __init__(
             self,
-            api_domain="",
+            api_domain="tencentcloudapi.com",
             endpoint="",
             version=None,
-            region="",
+            region="ap-guangzhou",
             secret_id="",
             secret_key="",
             token=None,

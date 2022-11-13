@@ -5,7 +5,7 @@ import hashlib
 import hmac
 import sys
 
-from apiclient.tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
+from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
 
 
 class Sign(object):
