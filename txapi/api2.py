@@ -113,7 +113,7 @@ class Api2Client(object):
                 print("[RESPONSE] {}".format(body))
             response = json.loads(body)
             return response
-        except Exception as e:
+        except Exception:
             import traceback
             print('traceback.format_exc():\n%s' % traceback.format_exc())
 

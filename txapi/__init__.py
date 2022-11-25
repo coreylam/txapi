@@ -1,5 +1,4 @@
 # -*- coding:utf -*-
-print("in txapi")
 from . import api2
 from . import api3
 
