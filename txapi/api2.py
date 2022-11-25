@@ -9,9 +9,9 @@ class Api2Client(object):
 
     def __init__(
             self,
-            api_domain="",
+            api_domain="tencentcloudapi.com",
             endpoint="",
-            version="",
+            version="2017-03-12",
             region="ap-guangzhou",
             secret_id="",
             secret_key="",
@@ -47,7 +47,7 @@ class Api2Client(object):
             'Version': '2017-03-12',
             'ssl': self.ssl
         }
-        self.client = QcloudApi(self.module, config)
+        self.client = QcloudApi(module, config)
         self.client.config["endpoint"] = self.endpoint
         self.client._factory = self._factory
         # self.service = base.Base(self.config)
