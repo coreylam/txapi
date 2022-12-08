@@ -3,6 +3,7 @@ from txapi import API
 import pytest
 from txapi.tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
 
+
 class config(object):
     api_domain = "tencentcloudapi.com"
     sid = "xxx"
@@ -10,7 +11,7 @@ class config(object):
     region = "ap-chongqing"
     is_debug = True
     is_ssl = True
-    
+
 
 def test_send_with_error_aksk():
     client = API.v3(
@@ -27,5 +28,6 @@ def test_send_with_error_aksk():
         "Limit": 20,
         "Offset": 1
     }
-    with pytest.raises(TencentCloudSDKException) as e:
-        rsp = cvm.request("DescribeInstances", params)
+    rsp = cvm.request("DescribeInstances", params)
+    assert "Error" in rsp["Response"]
+    assert rsp["Response"]["Error"]["Code"] == "AuthFailure.SecretIdNotFound"
