@@ -111,13 +111,14 @@ class Api3Client(AbstractClient):
             if self.debug:
                 print("[RESPONSE] {}".format(body.encode("utf-8")))
             response = json.loads(body)
-            if "Error" not in response["Response"]:
-                return response
-            else:
-                code = response["Response"]["Error"]["Code"]
-                message = response["Response"]["Error"]["Message"]
-                reqid = response["Response"]["RequestId"]
-                raise TencentCloudSDKException(code, message, reqid)
+            return response
+            # if "Error" not in response["Response"]:
+            #     return response
+            # else:
+            #     code = response["Response"]["Error"]["Code"]
+            #     message = response["Response"]["Error"]["Message"]
+            #     reqid = response["Response"]["RequestId"]
+            #     raise TencentCloudSDKException(code, message, reqid)
         except Exception as e:
             print(str(e))
             if isinstance(e, TencentCloudSDKException):
