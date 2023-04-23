@@ -15,38 +15,38 @@ Project: https://pypi.org/project/txapi/1.0.0/
 配置文件 config.py
 
 ```python
-api_domain = "tencentcloudapi.com" # 环境API域名, 公有云为: tencentcloudapi.com
-sid = "AKIDxxxx" # 个人 secret_id
-skey = "xxxx" # 个人 secret_key
-region = "ap-chongqing"
-is_debug = True
-is_ssl = True
-```
-
-密钥登录腾讯云控制台获取: https://console.cloud.tencent.com/cam/capi
-
-示例文件 demo.py
-```python
 # -*- coding:utf-8 -*-
-from api import API
-import config
+from txapi import API
 
-apiv3 = API.v3(
-    api_domain=config.api_domain,
-    region=config.region,
-    secret_id=config.sid,
-    secret_key=config.skey,
-    debug=config.is_debug,
-    ssl=config.is_ssl)
+client = API.v3(
+    api_domain="云API请求的域名",
+    region="地域名称",
+    secret_id="云API密钥id",
+    secret_key="云API密钥key",
+    debug=False,
+    ssl=True)
 
-cvm = apiv3.get_client("cvm", "2017-03-12")
+cvm = client.get_client("cvm", "2017-03-12")
 
 params = {
     "Limit": 20,
     "Offset": 1
 }
-
-# 请求示例列表(返回为json格式)
-rsp = cvm.request("DescribeInstances", params)
-
+print(cvm.request("DescribeInstances", params))
 ```
+~~~
+参数说明:
+
+- api_domain: 云API请求的域名:
+    默认为公有云域名, 也支持专有云(租户端+运营端)
+    公有云: tencentcloudapi.com
+    租户端api2: api2.环境主域名
+    租户端api3: api3.环境主域名
+    运营端api2: yunapi2.环境主域名
+    运营端api3: yunapi3.环境主域名
+- region: 地域名称
+- secret_id, secret_key: 云API密钥
+- ssl (是否开启https, 默认为True)
+- debug(是否打印请求响应信息, 默认为False),
+- 公有云密钥登录腾讯云控制台获取: https://console.cloud.tencent.com/cam/capi
+~~~
