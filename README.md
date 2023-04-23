@@ -12,8 +12,6 @@ Project: https://pypi.org/project/txapi/1.0.0/
 
 ## DEMO
 
-配置文件 config.py
-
 ```python
 # -*- coding:utf-8 -*-
 from txapi import API
