@@ -16,7 +16,7 @@ def read_desc(filename="README.md"):
 
 setup(
     name='txapi',
-    version="1.0.0",
+    version="1.0.1",
     description='api project for v2&v3',
     long_description=read_desc(),
     long_description_content_type="text/markdown",

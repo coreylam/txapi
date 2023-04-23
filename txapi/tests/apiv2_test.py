@@ -18,11 +18,11 @@ class TestApi(object):
             ssl=True,
             debug=False)
         assert api.api_domain == "domain1"
-        assert api.ssl == True
+        assert api.ssl
 
     def test_init_client(self):
         api = test_api()
-        assert api.client == None
+        assert api.client is None
         api.init_client()
         assert isinstance(api.client, QcloudApi)
 
