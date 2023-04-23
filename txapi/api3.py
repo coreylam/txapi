@@ -36,10 +36,16 @@ class Api3Client(AbstractClient):
         self.version_map = VERSION_MAP
         self.api_domain = api_domain
         self.debug = debug
+        self.sign_method = None
+
+    def set_sign_method(self, sign_method):
+        """ 设置加密算法，包括：("HmacSHA1", "HmacSHA256", "TC3-HMAC-SHA256")
+        """
+        self.sign_method = sign_method
 
     def init_client(self):
         httpProfile = HttpProfile()
-        clientProfile = ClientProfile()
+        clientProfile = ClientProfile(signMethod=self.sign_method)
         clientProfile.httpProfile = httpProfile
         httpProfile.endpoint = self.endpoint
         cred = credential.Credential(
