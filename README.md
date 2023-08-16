@@ -8,7 +8,7 @@
 pip install txapi
 ```
 
-Project: https://pypi.org/project/txapi/1.0.0/
+项目地址: https://pypi.org/project/txapi/
 
 ## DEMO
 
