@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import ssl
+from .log_file import file_logger
 
 from txapi.tencentcloud.common import credential
 from txapi.tencentcloud.common.abstract_client import AbstractClient
@@ -13,6 +14,8 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 
 class Api3Client(AbstractClient):
+
+    logger = file_logger("api3.log", name=__name__)
 
     def __init__(
             self,
@@ -82,7 +85,7 @@ class Api3Client(AbstractClient):
         obj = Api3Client(
             api_domain=self.api_domain,
             endpoint=self.endpoint,
-            version=self.version,
+            version=version,
             region=self.region,
             secret_id=self.secret_id,
             secret_key=self.secret_key,
@@ -106,16 +109,16 @@ class Api3Client(AbstractClient):
         self.init_client()
         try:
             if self.debug:
-                print("[ENDPOINT] {}".format(self.endpoint))
-                print("[VERSION] {}".format(self.version))
-                print("[ACTION] {}".format(action))
-                print("[PARAMS] {}".format(json.dumps(params)))
-                print("[SECRET_ID] {}".format(self.secret_id))
-                print("[SECRET_KEY] {}".format(self.secret_key))
-                print("[TOKEN] {}".format(self.token))
+                self.logger.debug("[ENDPOINT] {}".format(self.endpoint))
+                self.logger.debug("[VERSION] {}".format(self.version))
+                self.logger.debug("[ACTION] {}".format(action))
+                self.logger.debug("[PARAMS] {}".format(json.dumps(params)))
+                self.logger.debug("[SECRET_ID] {}".format(self.secret_id))
+                self.logger.debug("[SECRET_KEY] {}".format(self.secret_key))
+                self.logger.debug("[TOKEN] {}".format(self.token))
             body = self.client.call(action, params)
             if self.debug:
-                print("[RESPONSE] {}".format(body.encode("utf-8")))
+                self.logger.debug("[RESPONSE] {}".format(body.encode("utf-8")))
             response = json.loads(body)
             return response
             # if "Error" not in response["Response"]:

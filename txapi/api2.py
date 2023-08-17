@@ -1,11 +1,14 @@
 # -*- coding: utf8 -*-
 import json
+from .log_file import file_logger
 
 from txapi.QcloudApi.modules import base
 from txapi.QcloudApi.qcloudapi import QcloudApi
 
 
 class Api2Client(object):
+
+    logger = file_logger("api2.log", name=__name__)
 
     def __init__(
             self,
@@ -17,7 +20,8 @@ class Api2Client(object):
             secret_key="",
             token=None,
             ssl=True,
-            debug=False):
+            debug=False
+    ):
         self.endpoint = endpoint
         self.version = version
         self.secret_id = secret_id
@@ -98,19 +102,19 @@ class Api2Client(object):
         self.init_client()
         try:
             if self.debug:
-                print("[ENDPOINT] {}".format(self.endpoint))
-                print("[REQUEST] {}".format(
+                self.logger.debug("[ENDPOINT] {}".format(self.endpoint))
+                self.logger.debug("[REQUEST] {}".format(
                     self.client.generateUrl(action, params)))
-                print("[SECRET_ID]  {}".format(self.secret_id))
-                print("[SECRET_KEY]  {}".format(self.secret_key))
-                print("[TOKEN]  {}".format(self.token))
+                self.logger.debug("[SECRET_ID]  {}".format(self.secret_id))
+                self.logger.debug("[SECRET_KEY]  {}".format(self.secret_key))
+                self.logger.debug("[TOKEN]  {}".format(self.token))
             body = self.client.call(action, params)
             if isinstance(body, bytes) and not isinstance(body, str):
                 body = str(body, encoding="utf-8")
             else:
                 body = body.encode("utf-8")
             if self.debug:
-                print("[RESPONSE] {}".format(body))
+                self.logger.debug("[RESPONSE] {}".format(body))
             response = json.loads(body)
             return response
         except Exception:
