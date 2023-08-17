@@ -50,6 +50,26 @@ def file_logger(log_path="runtime.log", log_level="DEBUG", log_format=None,
     return logger
 
 
+def mask_string(secret_str, keep_start=4, keep_end=4):
+    """
+    将字符串的头尾部分保留，中间的字符用 * 代替
+
+    :param secret_str: 原始字符串
+    :param keep_start: 保留的头部字符数
+    :param keep_end: 保留的尾部字符数
+    :return: 转换后的字符串
+
+    e.g.
+    original_string = "Hello World!"
+    masked_string = mask_string(original_string, 2, 2)
+    print(masked_string)  # Output: "He******ld!"
+    """
+    if len(secret_str) <= keep_start + keep_end:
+        return "*" * len(secret_str)
+    else:
+        return secret_str[:keep_start] + '*' * 6 + secret_str[-keep_end:]
+
+
 if __name__ == "__main__":
     logger = file_logger()
     logger.info("info")

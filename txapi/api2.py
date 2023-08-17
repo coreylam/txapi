@@ -1,6 +1,6 @@
 # -*- coding: utf8 -*-
 import json
-from .log_file import file_logger
+from .log_file import file_logger, mask_string
 
 from txapi.QcloudApi.modules import base
 from txapi.QcloudApi.qcloudapi import QcloudApi
@@ -105,8 +105,12 @@ class Api2Client(object):
                 self.logger.debug("[ENDPOINT] {}".format(self.endpoint))
                 self.logger.debug("[REQUEST] {}".format(
                     self.client.generateUrl(action, params)))
-                self.logger.debug("[SECRET_ID]  {}".format(self.secret_id))
-                self.logger.debug("[SECRET_KEY]  {}".format(self.secret_key))
+                self.logger.debug("[SECRET_ID] {}".format(
+                    mask_string(self.secret_id)
+                ))
+                self.logger.debug("[SECRET_KEY] {}".format(
+                    mask_string(self.secret_key)
+                ))
                 self.logger.debug("[TOKEN]  {}".format(self.token))
             body = self.client.call(action, params)
             if isinstance(body, bytes) and not isinstance(body, str):

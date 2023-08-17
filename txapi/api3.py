@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import ssl
-from .log_file import file_logger
+from .log_file import file_logger, mask_string
 
 from txapi.tencentcloud.common import credential
 from txapi.tencentcloud.common.abstract_client import AbstractClient
@@ -113,8 +113,12 @@ class Api3Client(AbstractClient):
                 self.logger.debug("[VERSION] {}".format(self.version))
                 self.logger.debug("[ACTION] {}".format(action))
                 self.logger.debug("[PARAMS] {}".format(json.dumps(params)))
-                self.logger.debug("[SECRET_ID] {}".format(self.secret_id))
-                self.logger.debug("[SECRET_KEY] {}".format(self.secret_key))
+                self.logger.debug("[SECRET_ID] {}".format(
+                    mask_string(self.secret_id)
+                ))
+                self.logger.debug("[SECRET_KEY] {}".format(
+                    mask_string(self.secret_key)
+                ))
                 self.logger.debug("[TOKEN] {}".format(self.token))
             body = self.client.call(action, params)
             if self.debug:
